@@ -1125,10 +1125,7 @@ class _ExtendedImageState extends State<ExtendedImage>
       current = ExtendedImageGesture(
         this,
         key: widget.extendedImageGestureKey,
-        imageBuilder: (Widget image) => RepaintBoundary(
-          child: image,
-          key: widget.repaintBountryKey,
-        ),
+        repaintBountryKey: widget.repaintBountryKey,
       );
     } else if (widget.mode == ExtendedImageMode.editor) {
       current = ExtendedImageEditor(

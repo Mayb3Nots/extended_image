@@ -18,11 +18,13 @@ class ExtendedImageGesture extends StatefulWidget {
     this.imageBuilder,
     CanScaleImage? canScaleImage,
     Key? key,
+    this.repaintBountryKey,
   })  : canScaleImage = canScaleImage ?? _defaultCanScaleImage,
         super(key: key);
   final ExtendedImageState extendedImageState;
   final ImageBuilderForGesture? imageBuilder;
   final CanScaleImage canScaleImage;
+  final Key? repaintBountryKey;
   @override
   ExtendedImageGestureState createState() => ExtendedImageGestureState();
 }
@@ -331,7 +333,10 @@ class ExtendedImageGestureState extends State<ExtendedImageGesture>
       afterPaintImage: widget.extendedImageState.imageWidget.afterPaintImage,
       gestureDetails: _gestureDetails,
     );
-
+    image = RepaintBoundary(
+      child: image,
+      key: widget.repaintBountryKey,
+    );
     if (extendedImageSlidePageState != null) {
       image = widget.extendedImageState.imageWidget.heroBuilderForSlidingPage
               ?.call(image) ??
