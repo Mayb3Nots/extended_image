@@ -57,6 +57,7 @@ class ExtendedImage extends StatefulWidget {
     this.extendedImageGestureKey,
     this.isAntiAlias = false,
     this.handleLoadingProgress = false,
+    this.repaintBountryKey,
   })  : assert(constraints == null || constraints.debugAssertIsValid()),
         constraints = (width != null || height != null)
             ? constraints?.tighten(width: width, height: height) ??
@@ -118,6 +119,7 @@ class ExtendedImage extends StatefulWidget {
     bool cacheRawData = false,
     String? imageCacheName,
     Duration? cacheMaxAge,
+    this.repaintBountryKey,
   })  : assert(cacheWidth == null || cacheWidth > 0),
         assert(cacheHeight == null || cacheHeight > 0),
         image = ExtendedResizeImage.resizeIfNeeded(
@@ -214,6 +216,7 @@ class ExtendedImage extends StatefulWidget {
     int? maxBytes,
     bool cacheRawData = false,
     String? imageCacheName,
+    this.repaintBountryKey,
   })  : assert(cacheWidth == null || cacheWidth > 0),
         assert(cacheHeight == null || cacheHeight > 0),
         image = ExtendedResizeImage.resizeIfNeeded(
@@ -408,6 +411,7 @@ class ExtendedImage extends StatefulWidget {
     int? maxBytes,
     bool cacheRawData = false,
     String? imageCacheName,
+    this.repaintBountryKey,
   })  : assert(cacheWidth == null || cacheWidth > 0),
         assert(cacheHeight == null || cacheHeight > 0),
         image = ExtendedResizeImage.resizeIfNeeded(
@@ -500,6 +504,7 @@ class ExtendedImage extends StatefulWidget {
     int? maxBytes,
     bool cacheRawData = false,
     String? imageCacheName,
+    this.repaintBountryKey,
   })  : assert(cacheWidth == null || cacheWidth > 0),
         assert(cacheHeight == null || cacheHeight > 0),
         image = ExtendedResizeImage.resizeIfNeeded(
@@ -745,6 +750,8 @@ class ExtendedImage extends StatefulWidget {
   ///
   /// Anti-aliasing alleviates the sawtooth artifact when the image is rotated.
   final bool isAntiAlias;
+
+  final Key? repaintBountryKey;
 
   @override
   _ExtendedImageState createState() => _ExtendedImageState();
@@ -1118,6 +1125,10 @@ class _ExtendedImageState extends State<ExtendedImage>
       current = ExtendedImageGesture(
         this,
         key: widget.extendedImageGestureKey,
+        imageBuilder: (Widget image) => RepaintBoundary(
+          child: image,
+          key: widget.repaintBountryKey,
+        ),
       );
     } else if (widget.mode == ExtendedImageMode.editor) {
       current = ExtendedImageEditor(
