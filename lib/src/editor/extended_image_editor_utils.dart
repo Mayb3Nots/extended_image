@@ -74,7 +74,7 @@ class EditActionDetails {
   Rect? get layerDestinationRect =>
       screenDestinationRect?.shift(-layoutTopLeft);
 
-  Offset get layoutTopLeft => _layoutRect?.topLeft ?? Offset(80,0);
+  Offset get layoutTopLeft => _layoutRect?.topLeft ?? const Offset(80, 0);
 
   Rect? get rawDestinationRect => _rawDestinationRect;
 

@@ -346,7 +346,7 @@ class ExtendedImageCropLayerState extends State<ExtendedImageCropLayer>
       final Rect centerCropRect = getDestinationRect(
           rect: layoutRect, inputSize: result.size, fit: widget.fit);
       final Rect newScreenCropRect =
-          centerCropRect.shift(widget.editActionDetails.layoutTopLeft!);
+          centerCropRect.shift(widget.editActionDetails.layoutTopLeft);
       _doCropAutoCenterAnimation(newScreenCropRect: newScreenCropRect);
     } else {
       result = _doWithMaxScale(result);
@@ -457,7 +457,7 @@ class ExtendedImageCropLayerState extends State<ExtendedImageCropLayer>
     final Rect centerCropRect = getDestinationRect(
         rect: layoutRect, inputSize: rect.size, fit: widget.fit);
     final Rect newScreenCropRect =
-        centerCropRect.shift(widget.editActionDetails.layoutTopLeft!);
+        centerCropRect.shift(widget.editActionDetails.layoutTopLeft);
 
     final Rect oldScreenCropRect = widget.editActionDetails.screenCropRect!;
 
@@ -497,7 +497,7 @@ class ExtendedImageCropLayerState extends State<ExtendedImageCropLayer>
       final Rect centerCropRect = getDestinationRect(
           rect: layoutRect, inputSize: cropRect!.size, fit: widget.fit);
       final Rect newScreenCropRect =
-          centerCropRect.shift(widget.editActionDetails.layoutTopLeft!);
+          centerCropRect.shift(widget.editActionDetails.layoutTopLeft);
 
       _rectAnimation = _rectTweenController.drive<Rect?>(
           RectTween(begin: oldScreenCropRect, end: newScreenCropRect));
@@ -538,7 +538,7 @@ class ExtendedImageCropLayerState extends State<ExtendedImageCropLayer>
         final double totalScale = widget.editActionDetails.totalScale * scale;
 
         cropRect =
-            newScreenCropRect!.shift(-widget.editActionDetails.layoutTopLeft!);
+            newScreenCropRect!.shift(-widget.editActionDetails.layoutTopLeft);
 
         widget.editActionDetails
             .setScreenDestinationRect(newScreenDestinationRect);
