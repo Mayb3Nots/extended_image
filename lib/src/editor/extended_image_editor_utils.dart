@@ -72,13 +72,13 @@ class EditActionDetails {
 
   /// destination rect base on layer
   Rect? get layerDestinationRect =>
-      screenDestinationRect?.shift(-layoutTopLeft!);
+      screenDestinationRect?.shift(-layoutTopLeft);
 
-  Offset? get layoutTopLeft => _layoutRect?.topLeft;
+  Offset get layoutTopLeft => _layoutRect?.topLeft ?? Offset(80,0);
 
   Rect? get rawDestinationRect => _rawDestinationRect;
 
-  Rect? get screenCropRect => cropRect?.shift(layoutTopLeft!);
+  Rect? get screenCropRect => cropRect?.shift(layoutTopLeft);
 
   bool get reachCropRectEdge => _reachCropRectEdge;
 
